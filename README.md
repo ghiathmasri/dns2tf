@@ -8,5 +8,6 @@ you can clone the repo and then run
 
 If you want to see the results in the terminal
 
-  
+Make sure to convert "@" symbol in the SOA record to be the actual domain name
+ 
 then you may need to delete the NS records before applying the terrafor file.
