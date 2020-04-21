@@ -103,47 +103,4 @@ with open (fileName, 'r') as f:
                     type=TypeMatche,
                     record=PointToMatche,
                     root_zone_name=root_zone_name))
-            # if TypeMatche == "MX":
-            #     print(f"{ValueMatche}\t{TypeMatche}\t{PriorityMatch}\t{PointToMatche}")
-            # elif TypeMatche == "SRV":
-            #     print(
-            #         f"{ValueMatche}\t{TypeMatche}\t{PriorityMatch}\t{Weight}\t{Port}\t{PointToMatche}"
-            #     )
-            # else:
-            #     print(f"{ValueMatche}\t{TypeMatche}\t{PointToMatche}")
-
-
-
-
-
-
-
-
         except: pass
-
-       
-
-# resourceName = 
-# zone_id = aws_route53_{resourceName}.zone_id
-# name = "{ValueMatche}"
-# RTtype = "{TypeMatche}"
-# records = "{PointToMatche}"
-# ttl = "{TTL}"
-
-
-
-
-
-# resource "aws_route53_zone" "aa-dining_com" {
-#   name = "aa-dining.com"
-#   tags = {"Name":"aa-dining.com", "DNS":"External", "Resource":"DNS"}
-#   comment = "Managed by TF"
-# }
-
-# resource "aws_route53_record" "support_aa-dining_com" {
-#   zone_id = aws_route53_zone.aa-dining_com.zone_id
-#   name    = "support.aa-dining.com"
-#   type    = "CNAME"
-#   ttl     = "3600"
-#   records = ["aa-dining.zendesk.com"]
-# }
