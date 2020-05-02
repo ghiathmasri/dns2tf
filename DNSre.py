@@ -63,8 +63,8 @@ with open (fileName, 'r') as f:
             try:
                 Port_Or_Weight_Match = Port_Or_Weight.finditer(line)
                 next(Port_Or_Weight_Match)
-                Port = next(Port_Or_Weight_Match).group()
                 Weight = next(Port_Or_Weight_Match).group()
+                Port = next(Port_Or_Weight_Match).group()
             except: pass
             if TypeMatche == "SOA":
                 root_zone = ValueMatche
