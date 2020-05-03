@@ -2,11 +2,7 @@
 
 you can clone the repo and then run 
 
-### % python3 DNSre.py "the DNS Zone File" > "the name of terraformfile for output".tf 
-  ## OR
-#### % python3 DNSre.py "the DNS Zone File"
-
-If you want to see the results in the terminal
+### % python3 dns2R53.py "the DNS Zone File"
 
 Make sure to convert "@" symbol in the SOA record to be the actual domain name
  
