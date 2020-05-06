@@ -7,14 +7,14 @@ if len(sys.argv) < 2:
     exit(1)
 
 
-def _gen_zone(**d):
+def _Zone(**d):
     return """
 resource "aws_route53_zone" "{root_zone_name}" {{
   name = "{root_zone}"
 }}""".format(**d)
 
 
-def _gen_record(**d):
+def _Record(**d):
     return """
 resource "aws_route53_record" "{record_name}" {{
   zone_id = aws_route53_zone.{root_zone_name}.zone_id
@@ -79,11 +79,11 @@ def tfBody(fileName):
                     root_zone = ValueMatche
                     root_zone_name = root_zone.replace('.', '_')
 
-                    dnsFileContent += (_gen_zone(root_zone=root_zone,
+                    dnsFileContent += (_Zone(root_zone=root_zone,
                                      root_zone_name=root_zone_name))
 
                 elif TypeMatche == "A" or TypeMatche == "CNAME" or TypeMatche == "TXT":
-                    dnsFileContent += (_gen_record(record_name='{0}-{1}'.format(ValueMatche.replace('.', '_').replace('*', '_'), PointToMatche.lower().replace('.', '_').replace('=', '_').replace('+', '_').replace(':', '_').replace(' ', '')),
+                    dnsFileContent += (_Record(record_name='{0}-{1}'.format(ValueMatche.replace('.', '_').replace('*', '_'), PointToMatche.lower().replace('.', '_').replace('=', '_').replace('+', '_').replace(':', '_').replace(' ', '')),
                                        name=ValueMatche,
                                        ttl=TTL,
                                        type=TypeMatche,
@@ -91,7 +91,7 @@ def tfBody(fileName):
                                        root_zone_name=root_zone_name))
                 elif TypeMatche == "MX":
                     PointToMatche_MX = f'{PriorityMatch} {PointToMatche}'
-                    dnsFileContent += (_gen_record(record_name='{0}-{1}'.format(ValueMatche.replace('.', '_'), PointToMatche.lower().replace('.', '_')),
+                    dnsFileContent += (_Record(record_name='{0}-{1}'.format(ValueMatche.replace('.', '_'), PointToMatche.lower().replace('.', '_')),
                                        name=ValueMatche,
                                        ttl=TTL,
                                        type=TypeMatche,
@@ -99,14 +99,14 @@ def tfBody(fileName):
                                        root_zone_name=root_zone_name))
                 elif TypeMatche == "SRV":
                     PointToMatche_SRV = f'{PriorityMatch} {Weight} {Port} {PointToMatche}'
-                    dnsFileContent += (_gen_record(record_name='{0}-{1}'.format(ValueMatche.replace('.', '_'), PointToMatche.lower().replace('.', '_')),
+                    dnsFileContent += (_Record(record_name='{0}-{1}'.format(ValueMatche.replace('.', '_'), PointToMatche.lower().replace('.', '_')),
                                        name=ValueMatche,
                                        ttl=TTL,
                                        type=TypeMatche,
                                        record=PointToMatche_SRV,
                                        root_zone_name=root_zone_name))
                 else:
-                    dnsFileContent += (_gen_record(record_name='{0}-{1}'.format(ValueMatche.replace('.', '_'), PointToMatche.lower().replace('.', '_')),
+                    dnsFileContent += (_Record(record_name='{0}-{1}'.format(ValueMatche.replace('.', '_'), PointToMatche.lower().replace('.', '_')),
                                        name=ValueMatche,
                                        ttl=TTL,
                                        type=TypeMatche,
